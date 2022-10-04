@@ -21,18 +21,19 @@ for (let i = 0 ; i < listPacientes.length ; i++) {
 
     if (peso < 0 || peso > 1000) {
         pesoValido = false;
-        tdImc.textContent = 'Peso inválido'
+        tdImc.textContent = 'Peso inválido!';
+        paciente.classList.add("paciente-invalido");
     }
 
     if (altura < 0 || altura > 3) {
         alturaValida = false;
-        tdImc.textContent = 'Altura inválida!'
+        tdImc.textContent = 'Altura inválida!';
+        paciente.classList.add("paciente-invalido");
     }
 
     if (pesoValido && alturaValida) {
         let imc = peso / (altura * altura);
         tdImc.textContent = imc.toFixed(2);
-        console.log(`Peso = ${peso}, Altura = ${altura}, Imc = ${imc}`);
     }
 
 }
