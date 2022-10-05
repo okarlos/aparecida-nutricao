@@ -70,10 +70,26 @@ th{
 	background-color: #EEE;
 }
 
+#form-adiciona {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.grupo2 {
+	display: flex;
+	gap: 10px;
+}
+
 label{
 	color: #555;
-	display: block;
 	margin-bottom: .2em;
+	flex: 1;
+}
+
+#nome {
+	flex: 3;
 }
 
 .campo{
@@ -82,7 +98,6 @@ label{
 	width: 100%;
 	border: 1px solid #ccc;
 	padding: .7em;
-	width: 100%;
 }
 
 .campo-medio{
@@ -91,8 +106,7 @@ label{
 }
 
 .grupo{
-	width: 32%;
-	display: inline-block;
+	width: 100%;
 	padding: 10px 0px;
 }
 
