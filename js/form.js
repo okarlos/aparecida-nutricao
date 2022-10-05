@@ -12,7 +12,9 @@ botaoAdicionar.addEventListener("click", function(event) {
 
     // adiciona o paciente na tabela
     let tabela = document.querySelector("#tabela-pacientes");
-    tabela.appendChild(pacienteTr)
+    tabela.appendChild(pacienteTr);
+
+    form.reset();
 })
 
 function obtemInfoForm(form) {
@@ -35,31 +37,21 @@ function montaTr(paciente) {
     let pacienteTr = document.createElement("tr");
     pacienteTr.classList.add("paciente");
 
-    // cria as colunas
-    let nomeTd = document.createElement("td");
-    nomeTd.classList.add("info-nome");
-    let pesoTd = document.createElement("td");
-    pesoTd.classList.add("info-peso");
-    let alturaTd = document.createElement("td");
-    alturaTd.classList.add("info-altura");
-    let gorduraTd = document.createElement("td");
-    gorduraTd.classList.add("info-gordura");
-    let imcTd = document.createElement("td");
-    imcTd.classList.add("info-imc");
-
-    // preenche as colunas com os dados do paciente
-    nomeTd.textContent = paciente.nome;
-    pesoTd.textContent = paciente.peso;
-    alturaTd.textContent = paciente.altura;
-    gorduraTd.textContent = paciente.gordura;
-    imcTd.textContent = paciente.imc;
-
     // inclui as colunas na linha
-    pacienteTr.appendChild(nomeTd);
-    pacienteTr.appendChild(pesoTd);
-    pacienteTr.appendChild(alturaTd);
-    pacienteTr.appendChild(gorduraTd);
-    pacienteTr.appendChild(imcTd);
+    pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
+    pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
+    pacienteTr.appendChild(montaTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
+    pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
 
     return pacienteTr;
+}
+
+// função para criar as colunas (td)
+function montaTd (dado, classe) {
+    let td = document.createElement("td");
+    td.classList.add(classe);
+    td.textContent = dado;
+
+    return td;
 }
