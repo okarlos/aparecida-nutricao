@@ -10,11 +10,24 @@ botaoAdicionar.addEventListener("click", function(event) {
     // cria os elementos
     let pacienteTr = montaTr(paciente);
 
+    let erro = validaPaciente(paciente);
+    if (erro.length > 0){
+        let mensagemErro = document.querySelector(".erro");
+        mensagemErro.textContent = erro; //inclui mensagem no span de erro
+
+        let campoPeso = document.querySelector("#peso");
+        campoPeso.classList.add("campo-invalido");
+
+        return; //encerra função, sem incluir o paciente na tabela
+    }
+
     // adiciona o paciente na tabela
     let tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
-    form.reset();
+    form.reset(); //limpa o form
+    document.querySelector(".erro").textContent = ""; //limpa mensagem de erro do span
+    document.querySelector("#peso").classList.remove("campo-invalido"); //tira o erro do campo
 })
 
 function obtemInfoForm(form) {
@@ -54,4 +67,12 @@ function montaTd (dado, classe) {
     td.textContent = dado;
 
     return td;
+}
+
+function validaPaciente(paciente) {
+    if(validaPeso(paciente.peso)){
+        return "";
+    }else{
+        return "O peso informado é inválido!";
+    }
 }
