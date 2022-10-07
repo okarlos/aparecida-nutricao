@@ -22,8 +22,8 @@ botaoAdicionar.addEventListener("click", function(event) {
     tabela.appendChild(pacienteTr);
 
     form.reset(); //limpa o form
-    document.querySelector(".erro").textContent = ""; //limpa mensagem de erro do span[]
-    document.querySelector("#peso").classList.remove("campo-invalido"); //tira o erro do campo
+    let ul = document.getElementById("mensagens-erro");
+    ul.innerHTML = ""; //apaga das tags "li" que mostram os erros
 })
 
 function exibeMensagensErro(erros) {
