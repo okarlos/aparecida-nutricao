@@ -157,7 +157,7 @@ button[disabled=disabled], button:disabled {
 	gap: 10px;
 }
 
-.botao-erro span {
+.mensagem-erro {
 	color: red;
 	font-weight: bold;
 }

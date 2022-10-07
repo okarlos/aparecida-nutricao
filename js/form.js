@@ -1,8 +1,8 @@
-let botaoAdicionar = document.querySelector("#adicionar-paciente");
+let botaoAdicionar = document.getElementById("adicionar-paciente");
 botaoAdicionar.addEventListener("click", function(event) {
     event.preventDefault();
 
-    let form = document.querySelector("#form-adiciona");
+    let form = document.getElementById("form-adiciona");
     
     // extraindo informações do form
     let paciente = obtemInfoForm(form);
@@ -10,25 +10,34 @@ botaoAdicionar.addEventListener("click", function(event) {
     // cria os elementos
     let pacienteTr = montaTr(paciente);
 
-    let erro = validaPaciente(paciente);
-    if (erro.length > 0){
-        let mensagemErro = document.querySelector(".erro");
-        mensagemErro.textContent = erro; //inclui mensagem no span de erro
+    let erros = validaPaciente(paciente);
 
-        let campoPeso = document.querySelector("#peso");
-        campoPeso.classList.add("campo-invalido");
-
+    if (erros.length > 0){
+        exibeMensagensErro(erros);
         return; //encerra função, sem incluir o paciente na tabela
     }
 
     // adiciona o paciente na tabela
-    let tabela = document.querySelector("#tabela-pacientes");
+    let tabela = document.getElementById("tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
     form.reset(); //limpa o form
-    document.querySelector(".erro").textContent = ""; //limpa mensagem de erro do span
+    document.querySelector(".erro").textContent = ""; //limpa mensagem de erro do span[]
     document.querySelector("#peso").classList.remove("campo-invalido"); //tira o erro do campo
 })
+
+function exibeMensagensErro(erros) {
+    var ul = document.getElementById("mensagens-erro");
+    ul.innerHTML = "";
+
+    erros.forEach(function(erro) {
+        var li = document.createElement("li");
+        li.textContent = erro;
+        li.classList.add("mensagem-erro");
+        ul.appendChild(li);
+        console.log(erro);
+    })
+}
 
 function obtemInfoForm(form) {
 
@@ -70,9 +79,24 @@ function montaTd (dado, classe) {
 }
 
 function validaPaciente(paciente) {
-    if(validaPeso(paciente.peso)){
-        return "";
-    }else{
-        return "O peso informado é inválido!";
+
+    let erros = [];
+
+    if(paciente.nome.length == 0) {
+        erros.push("Informe um nome válido!");
     }
+
+    if(!validaPeso(paciente.peso) || paciente.peso.length == 0){
+        erros.push("Informe um peso válido!");
+    }
+
+    if(!validaAltura(paciente.altura) || paciente.altura.length == 0){
+        erros.push("Informe uma altura válida!");
+    }
+
+    if(paciente.gordura.length == 0) {
+        erros.push("Informe um percentual de gordura válido!");
+    }
+
+    return erros;
 }
