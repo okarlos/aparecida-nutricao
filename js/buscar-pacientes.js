@@ -8,7 +8,18 @@ botaoBuscar.addEventListener("click", function () {
     xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes");
 
     xhr.addEventListener("load", function() {
-        console.log(xhr.responseText);
+        
+        if(xhr.status == 200) {
+            let resposta = xhr.responseText;
+            let pacientes = JSON.parse(resposta);
+
+            pacientes.forEach(function(paciente) {
+                incluiPacienteNaTabela(paciente);
+            })
+            console.log("Pacientes carregados e adicionados na tabela!")
+        }else {
+            console.log(`Erro - ${xhr.status} - ${xhr.responseText}`)
+        }
     })
 
     xhr.send();

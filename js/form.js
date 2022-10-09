@@ -3,13 +3,7 @@ botaoAdicionar.addEventListener("click", function(event) {
     event.preventDefault();
 
     let form = document.getElementById("form-adiciona");
-    
-    // extraindo informações do form
     let paciente = obtemInfoForm(form);
-
-    // cria os elementos
-    let pacienteTr = montaTr(paciente);
-
     let erros = validaPaciente(paciente);
 
     if (erros.length > 0){
@@ -17,14 +11,18 @@ botaoAdicionar.addEventListener("click", function(event) {
         return; //encerra função, sem incluir o paciente na tabela
     }
 
-    // adiciona o paciente na tabela
-    let tabela = document.getElementById("tabela-pacientes");
-    tabela.appendChild(pacienteTr);
+    incluiPacienteNaTabela(paciente);
 
     form.reset(); //limpa o form
     let ul = document.getElementById("mensagens-erro");
     ul.innerHTML = ""; //apaga das tags "li" que mostram os erros
 })
+
+function incluiPacienteNaTabela(paciente) {
+    let pacienteTr = montaTr(paciente);
+    let tabela = document.getElementById("tabela-pacientes");
+    tabela.appendChild(pacienteTr);
+}
 
 function exibeMensagensErro(erros) {
     var ul = document.getElementById("mensagens-erro");
@@ -50,7 +48,6 @@ function obtemInfoForm(form) {
     }
 
     return paciente;
-
 }
 
 function montaTr(paciente) {
