@@ -6,9 +6,9 @@ Instrutor: https://github.com/douglasquintanilha
 
 - Eventos;
 - Criação de funções;
-- Validação de formulários
+- Validação de formulários;
 - Manipulação do DOM;
-- Conexão com API, trazendo dados para a página;
+- Conexão com API, trazendo dados para a página.
 
 **Deploy:**  
 https://nutricao.vercel.app/
