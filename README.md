@@ -9,3 +9,6 @@ Instrutor: https://github.com/douglasquintanilha
 - Validação de formulários
 - Manipulação do DOM;
 - Conexão com API, trazendo dados para a página;
+
+**Deploy:**  
+https://nutricao.vercel.app/
